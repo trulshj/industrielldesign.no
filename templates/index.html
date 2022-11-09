@@ -1,56 +1,71 @@
-{% extends 'base.html' %}
-
-{% load static %}
-{% load days_until %}
-{% load project_filters %}
-
-{% block page_title %}Hjem{% endblock %}
-
-{% block extra_head %}
-<link href="https://fonts.googleapis.com/css?family=PT+Serif:700&display=swap" rel="stylesheet">
-{% endblock extra_head %}
-
-{% block meta %}Industriell design er nettsiden for alle designstudentene på NTNU i Trondheim. Her kan man melde seg på arrangmenter, lese seg opp på fag, se andres prosjekter og mye mye mer.{% endblock %}
-
-{% block content %}
-{% include 'components/navbar.html' %}
+{% extends 'base.html' %} {% load static %} {% load days_until %} {% load
+project_filters %} {% block page_title %}Hjem{% endblock %} {% block extra_head
+%}
+<link
+  href="https://fonts.googleapis.com/css?family=PT+Serif:700&display=swap"
+  rel="stylesheet"
+/>
+{% endblock extra_head %} {% block meta %}Industriell design er nettsiden for
+alle designstudentene på NTNU i Trondheim. Her kan man melde seg på
+arrangmenter, lese seg opp på fag, se andres prosjekter og mye mye mer.{%
+endblock %} {% block content %} {% include 'components/navbar.html' %}
 <div class="full-width-container">
-<main id="homepage">
+  <main id="homepage">
     <section>
-        <h1>Raphael<br>linjeforening</h1>
-        <p>Studentene ved Industriell design på NTNU</p>
-        <img src="{% static 'img/illustrations/bao.png' %}" alt="Velkommen til Leonardo linjeforening">
-        <div class="scroll-down"><img src="{% static 'img/icons/arrow.svg' %}" alt="pil">Scroll ned</div>
+      <h1>Simen<br />linjeforening</h1>
+      <p>Studentene ved Industriell design på NTNU</p>
+      <img
+        src="{% static 'img/illustrations/bao.png' %}"
+        alt="Velkommen til Leonardo linjeforening"
+      />
+      <div class="scroll-down">
+        <img src="{% static 'img/icons/arrow.svg' %}" alt="pil" />Scroll ned
+      </div>
     </section>
-    <br>
+    <br />
     <div class="container">
-        <h4>Siste nyheter</h4><br>
-        <div class="events box-container">
-            {% for nyhet in nyheter %} {% include 'components/nyhet-component.html' with nyhet=nyhet %} {% endfor %}
-        </div>
-        <br>
-        <a href="{% url 'nyheter' %}" class="subtitle1 right">Se flere nyheter <img src="{% static 'img/icons/arrow.svg' %}" alt="pil" /></a>
+      <h4>Siste nyheter</h4>
+      <br />
+      <div class="events box-container">
+        {% for nyhet in nyheter %} {% include 'components/nyhet-component.html'
+        with nyhet=nyhet %} {% endfor %}
+      </div>
+      <br />
+      <a href="{% url 'nyheter' %}" class="subtitle1 right"
+        >Se flere nyheter
+        <img src="{% static 'img/icons/arrow.svg' %}" alt="pil"
+      /></a>
 
-        <h4>Kommende hendelser</h4><br>
-        <div class="events box-container">
-            {% for event in events %}{% if event.expo != True %}{% include 'components/event-component.html' with event=event %}{% endif %}{% endfor %}
-        </div>
-        <br>
-        <a href="{% url 'all_events' %}" class="subtitle1 right">Se flere arrangementer <img src="{% static 'img/icons/arrow.svg' %}" alt="pil" /></a>
-        
-        <div class="projects box-container">
-            {% for project in projects %}
-            <a class="box" href="{% url 'project_detail' project_pk=project.pk %}">
-                <img class="" src="{{ project.projectimage_set.all|get_first_project_image_url }}" alt="{{ project.creator }}">
-            </a>
-            {% endfor %}
-        </div>
-        <br>
-        <a href="{% url 'projects' %}" class="subtitle1 right">Se alle prosjektene <img src="{% static 'img/icons/arrow.svg' %}" /></a>
+      <h4>Kommende hendelser</h4>
+      <br />
+      <div class="events box-container">
+        {% for event in events %}{% if event.expo != True %}{% include
+        'components/event-component.html' with event=event %}{% endif %}{%
+        endfor %}
+      </div>
+      <br />
+      <a href="{% url 'all_events' %}" class="subtitle1 right"
+        >Se flere arrangementer
+        <img src="{% static 'img/icons/arrow.svg' %}" alt="pil"
+      /></a>
+
+      <div class="projects box-container">
+        {% for project in projects %}
+        <a class="box" href="{% url 'project_detail' project_pk=project.pk %}">
+          <img
+            class=""
+            src="{{ project.projectimage_set.all|get_first_project_image_url }}"
+            alt="{{ project.creator }}"
+          />
+        </a>
+        {% endfor %}
+      </div>
+      <br />
+      <a href="{% url 'projects' %}" class="subtitle1 right"
+        >Se alle prosjektene <img src="{% static 'img/icons/arrow.svg' %}"
+      /></a>
     </div>
-</main>
+  </main>
 </div>
-{% include 'components/footer.html' %}
-{% endblock content %}
-{% block javascript %}
-{% endblock javascript %}
+{% include 'components/footer.html' %} {% endblock content %} {% block
+javascript %} {% endblock javascript %}
